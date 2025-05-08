@@ -1,0 +1,21 @@
+stages:
+  train_titanic:
+    cmd: python trainer.py pipeline=titanic
+    deps:
+    - conf/pipeline/titanic.yaml
+    - data/raw/train.csv
+    - src/pipeline.py
+    - trainer.py
+    outs:
+    - data/processed
+    - models
+  train_titanic2:
+    cmd: python trainer.py pipeline=titanic2
+    deps:
+    - conf/pipeline/titanic2.yaml
+    - data/raw/train.csv
+    - src/pipeline.py
+    - trainer.py
+    outs:
+    - data/processed_2
+    - models_2
