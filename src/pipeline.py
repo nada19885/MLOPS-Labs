@@ -22,14 +22,14 @@ def load_and_preprocess_data(data_path, test_size, random_state):
         X, y, test_size=test_size, random_state=random_state
     )
     return X_train, X_test, y_train, y_test
-    
+
 
 def saved_processed_data(X_train, X_test , y_train , y_test , processed_data_path):
     os.makedirs(processed_data_path , exist_ok=True)
     X_train.to_parquet(f"{processed_data_path}/train_X.parquet")
     X_test.to_parquet(f"{processed_data_path}/test_X.parquet")
-    y_train.to_parquet(f"{processed_data_path}/train_y.parquet")
-    y_test.to_parquet(f"{processed_data_path}/test_y.parquet")
+    y_train.to_frame().to_parquet(f"{processed_data_path}/train_y.parquet")
+    y_test.to_frame().to_parquet(f"{processed_data_path}/test_y.parquet")
 
 def create_pipeline(model_type , model_params):
     numeric_features = ["Age" , "SibSp" , "Parch" , "Fare"]
