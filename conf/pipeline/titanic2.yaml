@@ -1,11 +1,11 @@
 data: 
   raw_data_path: data/raw/train.csv
-  processed_data_path: data/processed
+  processed_data_path: data/processed_2
   test_size: 0.3
   random_state: 123
 
 model:
-  model_path: models
+  model_path: models_2
   logistic:
     max_iter: 300
   random_forest:

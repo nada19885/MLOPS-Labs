@@ -1,11 +1,5 @@
 [core]
     remote = origin
-['remote "origin"']
+[remote "origin"]
     url = s3://dvc
     endpointurl = https://dagshub.com/excellence.nadamaher/Mlops-ITI.s3
-['remote "dagshub_remote"']
-    url = s3://Mlops-ITI
-    endpointurl = https://dagshub.com/api/v1/repo-buckets/s3/excellence.nadamaher
-    region = us-east-1
-    access_key_id = excellence.nadamaher
-    secret_access_key = 31deae1cafd18c666509caa9cea0b1db13ca2df0

@@ -1,0 +1,13 @@
+pipeline:
+  data:
+    raw_data_path: data/raw/train.csv
+    processed_data_path: data/processed_2
+    test_size: 0.3
+    random_state: 123
+  model:
+    model_path: models
+    logistic:
+      max_iter: 300
+    random_forest:
+      n_estimators: 200
+      random_state: 123
