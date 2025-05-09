@@ -177,5 +177,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-/models
 /models_2

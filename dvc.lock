@@ -34,3 +34,37 @@ stages:
       md5: e98874ca3c5f27d20cf36ac73548ea43.dir
       size: 1958170
       nfiles: 2
+  train_titanic2:
+    cmd: python trainer.py pipeline=titanic2
+    deps:
+    - path: conf/pipeline/titanic2.yaml
+      hash: md5
+      md5: b18a9fd14d7d911f431874512b5465fa
+      size: 241
+      isexec: true
+    - path: data/raw/train.csv
+      hash: md5
+      md5: 2309cc5f04782ed9bb6016d9f4e381cf
+      size: 61194
+      isexec: true
+    - path: src/pipeline.py
+      hash: md5
+      md5: d7d0d346a5e451db34d495adf6cae102
+      size: 3036
+      isexec: true
+    - path: trainer.py
+      hash: md5
+      md5: f8380bde907aee47005936bccb93afb7
+      size: 1213
+      isexec: true
+    outs:
+    - path: data/processed_2
+      hash: md5
+      md5: a530e741b3f0ed2d35c57a696f0b6e1a.dir
+      size: 26801
+      nfiles: 4
+    - path: models_2
+      hash: md5
+      md5: 4d7cafebcf30d623e89fdeee28d4278d.dir
+      size: 3565019
+      nfiles: 2
