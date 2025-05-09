@@ -80,4 +80,4 @@ def train_and_evaluate(X_train , X_test , y_train , y_test , model_type , model_
     os.makedirs(model_path , exist_ok=True)
     with open(f"{model_path}/{model_type}.pkl" , "wb") as f:
         pickle.dump(pipeline,f)
-    return accuracy      
+    return model_type,accuracy      
