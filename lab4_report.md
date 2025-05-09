@@ -1,33 +1,23 @@
-# Lab 4 Report: MLOps Pipeline with MLflow and Dagshub
+## Lab 5 Report: Hyperparameter Tuning and Multi-Metric Evaluation
 
-## Overview
-This lab integrated MLflow with a Titanic survival prediction pipeline, focusing on experiment tracking, model registration, and deployment.
+### Overview
+Enhanced the Titanic pipeline to run multiple trials in a single experiment, track additional metrics, and stage the best model to production.
 
-## Models Trained
-- **LogisticRegression (TitanicLogisticRegression)**:
-  - Accuracy: [e.g., 0.78, fill from Dagshub]
-  - Run ID: 379c84dc33f8468f8d194e16c593314c
-- **RandomForest (TitanicRandomForest)**:
-  - Accuracy: [e.g., 0.82, fill from Dagshub]
-  - Run ID: df551ee0026a47f9a6af9d61b9561850
+### Experiment Details
+- **Experiment Name**: Titanic_Experiment
+- **Trials**:
+  - LogisticRegression: 6 runs (C=[0.1, 1.0, 10.0], max_iter=[200, 500])
+  - RandomForest: 9 runs (n_estimators=[50, 100, 200], max_depth=[None, 10, 20])
+- **Metrics Tracked**: Accuracy, Precision, Recall, F1-Score
 
-## Model Comparison
-- **Best Model**: TitanicRandomForest (higher accuracy of 0.82).
-- Selected for deployment based on performance.
+### Best Model
+- **Model**: titanic2_random_forest (n_estimators=50, max_depth=None)
+- **Run ID**: 91ed742426fb499c85910430ad693928
+- **Accuracy**: 0.813
+- **Staged to Production**: Successfully tagged as "Production" in the MLflow Model Registry.
 
-## Deployment
-- **Status**: Dagshub deployment feature marked as "Coming Soon," so direct deployment was not possible.
-
-
-## Challenges and Solutions
-- **Challenge**: Categorical data caused `ValueError: could not convert string to float`.
-  - **Solution**: Used `ColumnTransformer` with `OneHotEncoder` in a `Pipeline`.
-- **Challenge**: MLflow `input_example` warnings for model signature.
-  - **Solution**: Used a DataFrame slice (`X_train.iloc[:1]`) to reduce warnings.
-- **Challenge**: Deployment unavailable on Dagshub.
-  - **Solution**: Tested locally with MLflow serving.
-
-## Lessons Learned
-- Importance of a modular `Pipeline` for preprocessing and training.
-- Debugging MLflow logging and handling deployment limitations.
-- Value of experiment tracking for comparing models and reproducibility.
+### Challenges
+- **Challenge**: `input_example` warnings in MLflow.
+  - **Solution**: Ensured `input_example` contained data using `X_train.iloc[:1].copy()`.
+- **Challenge**: Deprecated `transition_model_version_stage` method.
+  - **Solution**: Noted for future update to use tags.
